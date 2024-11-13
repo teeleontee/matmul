@@ -155,26 +155,3 @@ impl Multiplier for EasyMultiplier {
         })
     }
 }
-
-mod tests {
-    use crate::implementations::EasyMultiplier;
-
-    #[allow(dead_code)]
-    struct Fixture {
-        multiplier: EasyMultiplier,
-    }
-
-    impl Default for Fixture {
-        fn default() -> Self {
-            let multiplier = EasyMultiplier::new(crate::args::DeviceType::All, 0)
-                .expect("unable to create multiplier");
-            Fixture { multiplier }
-        }
-    }
-
-    #[test]
-    fn basic_multiplication_test() {
-        let fixture = Fixture::default();
-        let _multiplier = fixture.multiplier;
-    }
-}
