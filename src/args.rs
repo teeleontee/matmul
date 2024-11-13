@@ -16,7 +16,7 @@ pub enum DeviceType {
     All = 4,
 }
 
-/// 3 implementations are provided as of time of writing
+/// 4 implementations are provided as of time of writing
 #[derive(Debug, Subcommand)]
 pub enum Mode {
     /// Basic implementation is just 3 loops on the host
@@ -48,7 +48,4 @@ pub struct Args {
     /// Choose where to multiply the matrices
     #[command(subcommand)]
     pub mode: Mode,
-    /// Basic debug information
-    #[arg(short, long)]
-    pub logs: bool,
 }

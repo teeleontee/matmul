@@ -39,11 +39,9 @@ impl Matrix {
             return Err(err_msg.into());
         }
 
-        let res = Self {
-            rows,
-            cols,
-            data: data.to_vec(),
-        };
+        let data = data.to_vec();
+
+        let res = Self { rows, cols, data };
 
         Ok(res)
     }

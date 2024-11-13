@@ -4,7 +4,8 @@ use opencl3::context::Context;
 use opencl3::device::Device;
 use opencl3::error_codes::ClError;
 use opencl3::kernel::Kernel;
-use opencl3::memory::{create_buffer, Buffer};
+use opencl3::memory::create_buffer;
+use opencl3::memory::Buffer;
 use opencl3::memory::{CL_MEM_READ_ONLY, CL_MEM_WRITE_ONLY};
 use opencl3::platform::Platform;
 use opencl3::program::Program;
@@ -15,7 +16,6 @@ use opencl3::types::{CL_FALSE, CL_TRUE};
 use crate::args::DeviceType;
 use crate::multiplier::{Multiplier, MultiplierInfo, MultiplierStat};
 use crate::sources;
-use crate::sources::{ELEM_PER_THREAD, TILE};
 use crate::Matrix;
 use crate::Result;
 
@@ -44,8 +44,8 @@ impl Multiplier for HardMultiplier {
         let orig_rows = m1.rows;
         let orig_cols = m2.cols;
 
-        let m1 = m1.create_zero_padded(TILE);
-        let m2 = m2.create_zero_padded(TILE);
+        let m1 = m1.create_zero_padded(sources::TILE);
+        let m2 = m2.create_zero_padded(sources::TILE);
 
         let context = Context::from_device(&self.device)?;
         let queue =
@@ -113,8 +113,8 @@ impl Multiplier for HardMultiplier {
         }
 
         let kernel_event = unsafe {
-            let global_work_sizes = [m2.cols, m1.rows / ELEM_PER_THREAD];
-            let local_work_size = [TILE, TILE / ELEM_PER_THREAD];
+            let global_work_sizes = [m2.cols, m1.rows / sources::ELEM_PER_THREAD];
+            let local_work_size = [sources::TILE, sources::TILE / sources::ELEM_PER_THREAD];
             queue.enqueue_nd_range_kernel(
                 kernel.get(),
                 2,

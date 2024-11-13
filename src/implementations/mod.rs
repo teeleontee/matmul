@@ -1,15 +1,13 @@
 use std::io;
 
+use opencl3::device::get_all_devices;
 use opencl3::device::Device;
 use opencl3::device::{CL_DEVICE_TYPE_ALL, CL_DEVICE_TYPE_CPU, CL_DEVICE_TYPE_GPU};
+use opencl3::error_codes::ClError;
+use opencl3::event::get_event_profiling_info;
+use opencl3::event::Event;
+use opencl3::event::{CL_PROFILING_COMMAND_END, CL_PROFILING_COMMAND_START};
 use opencl3::types::cl_device_type;
-use opencl3::{
-    device::get_all_devices,
-    error_codes::ClError,
-    event::{
-        get_event_profiling_info, Event, CL_PROFILING_COMMAND_END, CL_PROFILING_COMMAND_START,
-    },
-};
 
 use super::args::DeviceType;
 use super::Result;
