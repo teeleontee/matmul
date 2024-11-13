@@ -1,7 +1,7 @@
 use std::io;
 use std::time;
 
-use crate::multiplier::{self, Multiplier, MultiplierStat};
+use crate::multiplier::{Multiplier, MultiplierInfo, MultiplierStat};
 use crate::Matrix;
 use crate::Result;
 
@@ -36,8 +36,8 @@ impl Multiplier for BasicMultiplier {
         Ok(res)
     }
 
-    fn info(&self) -> Result<multiplier::MultiplierInfo> {
-        Ok(multiplier::MultiplierInfo::OnDeviceMultiplier)
+    fn info(&self) -> Result<MultiplierInfo> {
+        Ok(MultiplierInfo::OnDeviceMultiplier)
     }
 
     fn stat(&self) -> Option<MultiplierStat> {

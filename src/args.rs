@@ -16,7 +16,7 @@ pub enum DeviceType {
     All = 4,
 }
 
-/// 3 implementations are provided as of time of writing
+/// 4 implementations are provided as of time of writing
 #[derive(Debug, Subcommand)]
 pub enum Mode {
     /// Basic implementation is just 3 loops on the host

@@ -39,11 +39,9 @@ impl Matrix {
             return Err(err_msg.into());
         }
 
-        let res = Self {
-            rows,
-            cols,
-            data: data.to_vec(),
-        };
+        let data = data.to_vec();
+
+        let res = Self { rows, cols, data };
 
         Ok(res)
     }
@@ -66,6 +64,8 @@ impl Matrix {
     }
 
     /// Return a mutable iterator to the matrix data
+    ///
+    /// Is used in tests
     #[allow(unused)]
     pub fn iter_mut(&mut self) -> std::slice::IterMut<'_, f32> {
         self.data.iter_mut()
