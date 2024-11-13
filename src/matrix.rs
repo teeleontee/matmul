@@ -17,7 +17,7 @@ impl PartialEq for Matrix {
             return false;
         }
 
-        self.data.iter().zip(other.data.iter()).all(|(a, b)| {
+        self.iter().zip(other.data.iter()).all(|(a, b)| {
             let res = a - b;
             res.abs() < 0.01
         })
@@ -48,7 +48,7 @@ impl Matrix {
         Ok(res)
     }
 
-    /// Creates an zeroed out Matrix of given size
+    /// Creates a zeroed out Matrix of given size
     pub fn create_empty(rows: usize, cols: usize) -> Self {
         Self {
             rows,
@@ -58,15 +58,12 @@ impl Matrix {
     }
 
     /// Return an iterator to the matrix data
-    ///
-    /// Is used in tests
-    #[allow(unused)]
     pub fn iter(&self) -> std::slice::Iter<'_, f32> {
         self.data.iter()
     }
 
     /// Return a mutable iterator to the matrix data
-    #[allow(unused)]
+    #[cfg(test)]
     pub fn iter_mut(&mut self) -> std::slice::IterMut<'_, f32> {
         self.data.iter_mut()
     }
