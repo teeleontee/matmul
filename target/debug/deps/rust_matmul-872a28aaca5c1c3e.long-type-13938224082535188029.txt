@@ -1,0 +1,1 @@
+std::iter::Filter<std::iter::Map<std::slice::Iter<'_, *mut std::ffi::c_void>, {closure@src/multipliers.rs:74:20: 74:24}>, {closure@src/multipliers.rs:74:51: 74:59}>

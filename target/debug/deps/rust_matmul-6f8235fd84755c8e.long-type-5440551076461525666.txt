@@ -1,0 +1,1 @@
+std::iter::Filter<std::slice::Iter<'_, (*mut std::ffi::c_void, args::DeviceType)>, &dyn for<'a> std::ops::Fn(&'a (*mut std::ffi::c_void, args::DeviceType)) -> bool>
