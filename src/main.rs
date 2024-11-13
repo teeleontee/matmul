@@ -5,15 +5,15 @@ mod multiplier;
 mod parse;
 mod sources;
 
+use std::fs;
 use std::path::Path;
 
 use clap::Parser;
 
 use args::Args;
 use matrix::Matrix;
-use multiplier::{implementation, MultiplierInfo};
-
-use crate::multiplier::MultiplierStat;
+use multiplier::implementation;
+use multiplier::{MultiplierInfo, MultiplierStat};
 
 type Error = dyn std::error::Error;
 type Result<T> = std::result::Result<T, Box<Error>>;
@@ -69,7 +69,7 @@ fn main() {
     println!("Total time: {}", total_time);
     println!("Kernel time: {}", gpu_time);
 
-    if let Err(e) = std::fs::write(cli.output, res.to_string()) {
+    if let Err(e) = fs::write(cli.output, res.to_string()) {
         eprintln!("unable to write results, {}", e);
     }
 }

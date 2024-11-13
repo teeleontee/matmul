@@ -4,7 +4,8 @@ use opencl3::context::Context;
 use opencl3::device::Device;
 use opencl3::error_codes::ClError;
 use opencl3::kernel::Kernel;
-use opencl3::memory::{create_buffer, Buffer};
+use opencl3::memory::create_buffer;
+use opencl3::memory::Buffer;
 use opencl3::memory::{CL_MEM_READ_ONLY, CL_MEM_WRITE_ONLY};
 use opencl3::platform::Platform;
 use opencl3::program::Program;
@@ -12,11 +13,12 @@ use opencl3::program::CL_STD_3_0;
 use opencl3::types::cl_float;
 use opencl3::types::{CL_FALSE, CL_TRUE};
 
+use crate::args::DeviceType;
 use crate::multiplier::{Multiplier, MultiplierInfo, MultiplierStat};
 use crate::sources;
+use crate::sources::TILE;
 use crate::Matrix;
 use crate::Result;
-use crate::{args::DeviceType, sources::TILE};
 
 use super::TimeStat;
 

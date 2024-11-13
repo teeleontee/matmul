@@ -1,6 +1,3 @@
-use crate::args::Mode;
-use crate::Matrix;
-
 // Creates a test that verifies that matrix multiplication in mode works
 //
 // * `$name` - test name
@@ -17,11 +14,11 @@ macro_rules! create_test {
         fn $name() {
             let mut multiplier = $crate::multiplier::implementation($mode).unwrap();
 
-            let m1 = Matrix::create($n, $m, $slice1).unwrap();
-            let m2 = Matrix::create($m, $k, $slice2).unwrap();
+            let m1 = $crate::Matrix::create($n, $m, $slice1).unwrap();
+            let m2 = $crate::Matrix::create($m, $k, $slice2).unwrap();
 
             let res = multiplier.multiply(&m1, &m2).unwrap();
-            let expected = Matrix::create($n, $k, $exp).unwrap();
+            let expected = $crate::Matrix::create($n, $k, $exp).unwrap();
 
             if $eq {
                 assert_eq!(res, expected);
@@ -31,6 +28,8 @@ macro_rules! create_test {
         }
     };
 }
+
+use crate::args::Mode;
 
 const BASIC: Mode = Mode::Basic;
 const EASY: Mode = Mode::Easy {
@@ -91,8 +90,8 @@ create_test!(test_hard_fail_3, HARD, false, 3, 3, 1, M1_3, M2_3, WRONG_ANS_3);
 use rand::prelude::*;
 
 struct Case {
-    m1: Matrix,
-    m2: Matrix,
+    m1: crate::Matrix,
+    m2: crate::Matrix,
 }
 
 impl Case {
@@ -114,8 +113,8 @@ fn generate_case() -> Case {
     let m = rng.gen::<usize>() % 100;
     let k = rng.gen::<usize>() % 100;
 
-    let mut m1 = Matrix::create_empty(n, m);
-    let mut m2 = Matrix::create_empty(m, k);
+    let mut m1 = crate::Matrix::create_empty(n, m);
+    let mut m2 = crate::Matrix::create_empty(m, k);
 
     m1.iter_mut().for_each(|el| *el = rng.gen::<f32>() % 1000.0);
     m2.iter_mut().for_each(|el| *el = rng.gen::<f32>() % 1000.0);
