@@ -48,7 +48,4 @@ pub struct Args {
     /// Choose where to multiply the matrices
     #[command(subcommand)]
     pub mode: Mode,
-    /// Basic debug information
-    #[arg(short, long)]
-    pub logs: bool,
 }
